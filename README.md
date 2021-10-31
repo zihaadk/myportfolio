@@ -1,6 +1,6 @@
 Hi, Welcome to my personal website.
 
-This website was developed to show case my skills as well as act as a repository for any useful information.
+This website was developed to show case my skills, projects as well as act as a repository for any useful information.
 
 The MSc ePortfolio section represents a portfolio for the MSc Cyber Security program currently being completed at the University of Essex - UK 
 
