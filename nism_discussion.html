@@ -57,12 +57,12 @@
 									</header>
                   
 									<p>Read Glisson, W., Andel, T., McDonald, T., Jacobs, M., Campbell, M. & Mayr, J. (2015) Compromising a Medical Mannequin. Healthcare Information Systems and Technology (Sighealth).</p>
-                  <p>Answer the following discussion questions:</p>
-                  <ul>
-									  <li>What are the major threats and vulnerabilities discussed in the paper?</li>
-  									<li>How would you mitigate against these?</li>
+                  							<p>Answer the following discussion questions:</p>
+                  							<ul>
+									  	<li>What are the major threats and vulnerabilities discussed in the paper?</li>
+  										<li>How would you mitigate against these?</li>
 									</ul>
-                  <p>You should demonstrate that you understand the topic covered and ensure you use references to academic literature (including journals, books, and reports)</p>
+                  							<p>You should demonstrate that you understand the topic covered and ensure you use references to academic literature (including journals, books, and reports)</p>
                   <p>Your initial posting should respond to the question and be at least 200 words long. Your initial post should be labelled "initial post".</p>
                   
                   <header class="major">
@@ -160,27 +160,31 @@
 									<header class="major">
 										<h2>Collaborative Learning Discussion 2</h2>
 									</header>
-									<p>Identify and discuss two security technologies and the context in which they can be employed. Your discussion could consider either network or/and software security issues. For example, if a network issue, what type of firewall would be ideal for the solution? What are the strengths and weaknesses of the solution?</p>
-									<b>Learning Outcomes</b>
-									<p></p>
-									<p>1. Identify and explain the architecture, structure and functionality of basic components of a computer system, considering Cyber Security issues.</p>
-									<p>2. Evaluate critically implications of the key vulnerabilities and threats of software and network security and approaches to mitigate these issues.</p>
+									
+									<p>Discuss the results of your scans from this activity in Unit 3 with other students and your tutor by posting your responses to the forum. You can share individual results or submit as a team.</p>
+									<p>You should demonstrate that you understand the topic covered and ensure you use references to academic literature (journals, books, reports, etc.).</p>
+									<p>Your initial posting should respond to the question and be at least 200 words long. The initial post should be labelled ‘Initial Post’.</p>
+									
+
+									
 									<header class="major">
 										<h3>Initial Post</h3>
 									</header>
-									<p>Network security keeps evolving as new technologies emerge. A common method used to protect networks is a packet filtering firewall. Packet filtering firewalls implement policies based on IP addresses, ports or protocols (Rountree, 2011). These firewalls are considered to be inexpensive and can operate at high speeds since their processing logic is simple. Hardware devices such as routers and switches still make use of packet filtering firewalls due to its high speed networking requirement (Melanson, 2014). In contrast packet filtering firewalls do not store any state information i.e. ports will need to be open statically for traffic to pass through (Andress, 2014). Packet filtering firewalls operate at level 3 of the OSI (Open Systems Interconnection) model rendering it ineffective against layer 7 (HTTP/S) attacks; since they cannot inspect the payload of a packet and can be easily spoofed (fake IP addresses inserted into packets) by an attacker (Rountree, 2011).</p>
 									
-								        <p>One method of protecting against HTTP/S attacks is through the implementation of a Web Application Firewall (WAF) which aims at protecting applications accessible from the internet. WAF’s run at layer 7 of the OSI model and are able to filter, monitor and block malicious HTTP/S traffic destined to web applications (F5 Inc, 2021). Internet facing applications require protection against SQL (Structured Query Language) injection achieved by injecting SQL code into a database, XSS (Cross-Site Scripting) attacks achieved by injecting malicious code into a web browser, cooking poisoning which occurs by hijacking a user’s session, amongst others (F5 Inc, 2021). However the draw backs of WAF’s includes cost as these can be relatively expensive and performance as WAF’s need to inspect each and every packet thereby slowing down a network. Babiker et al.  (2018) further argue that WAF’s produce high false negatives and high false positives as well as their inability to detect unknown attacks.</p>
+									<p>A scanning task was performed on an assigned website called “https://loadedwithstuff.co.uk” from South Africa - Johannesburg with basic scanning tools such as traceroute, mtr, dig, nslookup, whois, nmap and telnet. Various results were obtained and analysed as indicated in the screenshots attached.</p>
+									
+								        <p>tcptraceroute on port 80 was used on an Apple MacBook computer which yielded 13 hops to the destination, this was confirmed by executing an mtr (mytraceroute) which indicated 30% packet loss from hop 2 to hop 3. It was observed that the largest delay was from South Africa to London, with a round trip time (RTT) for a packet increasing from 6.9ms to 179.3ms (hop 7) respectively. The average delay for hop 7 was 179.2ms. This delay is expected as the connectivity average latency is around 140ms if SEACOM cables are used as a transport medium between the two countries (SEACOM, 2021). Name servers translate domain names into IP addresses or vice versa (A2 Hosting, 2021). The name servers (NS) identified were ns1.a2hosting.com, ns2.a2hosting.com, ns3.a2hosting.com and ns4.a2hosting.com; obtained by utilising the dig command. The online whois tool was used to obtain the registered contact details (various contacts at a2hosting.com) as indicated in the screenshots attached. The mail record (mail.loadedwithstuff.co.uk) was identified using nslookup. The website was found to be hosted by A2HOSTING in Amsterdam, Netherlands using the hosting checker online tool (Hosting Checker, 2021).</p>
 								
-								        <p>In conclusion network security forms an important role within an organizations security plan. Selecting an appropriate firewall starts by understanding the architecture and the network that needs to be protected.</p>
-								        <header class="major">
+								        <p>In addition, nmap was used to determine open ports, with the tools mentioned above it is relatively easy for attackers to fingerprint servers and launch attacks on the protocols identified (McNab, 2017). For example, knowing that port 80 is currently open – one can execute the telnet command and issue a HEAD / HTTP/1.0 request – this reveals that the server is running Apache while nmap reveals a PostgreSQL database installed. No issues were observed in obtaining the above-mentioned results.</p>
+								        
+									<header class="major">
 										<h4>List of References</h4>
 									</header>
-									        <p>Andress, J. (2014) The Basics of Information Security, Understanding the Fundamentals of InfoSec in Theory and Practice. 2nd ed. Massachusetts: Syngress Publishing. Available from: https://doi.org/10.1016/C2013-0-18642-4 [Accessed 16 September 2021]</p>
-									        <p>Babiker, M., Karaarslan, E., Hoscan, Y. (2018) ‘Web application attack detection and forensics: A survey’, 6th international symposium on digital forensic and security (ISDFS). Turkey, 22-25 March 2018. USA: IEEE. Available from: http://acikerisim.mu.edu.tr/xmlui/bitstream/handle/20.500.12809/1677/Karaarslan.pdf?sequence=1&isAllowed=y [Accessed 15 September 2015]</p>
-									        <p>F5 Inc. (2021) What is a Web Application Firewall. Available from: https://www.f5.com/services/resources/glossary/web-application-firewall [Accessed 16 September 2021]</p>
-									        <p>Melanson, T J. (2014) Firewall Evolution from Packet Filter to Next Generation. Available from: https://www.juniper.net/documentation/en_US/learn-about/LA_FIrewallEvolution.pdf [Accessed 17 September 2021]</p>
-									        <p>Rountree, D. (2011) Security for Microsoft Windows System Administrators, Introduction to Key Information Security Concepts. Massachusetts: Syngress Publishing. Available from: https://doi.org/10.1016/B978-1-59749-594-3.00003-X [Accessed 16 September 2021]</p>
+									        <p>A2 Hosting (2021) Nameservers: What Are They And How Do They Work? Available from: https://www.a2hosting.com/blog/what-are-nameservers/ [Accessed 01 December 2021].</p>
+									        <p>Hosting Checker (2021) Hosting Checker Tool. Available from: https://hostingchecker.com [Accessed 01 December 2021].</p>
+									        <p>McNab, C. (2017) Network Security Assessment: Know Your Network. 3rd ed. O'Reilly Media.</p>
+									        <p>SEACOM (2021) PoP Latency Matrix. Available from: https://latency.seacom.com [Accessed 01 December 2021].</p>
+									       
 								       
 									<a href="/myportfolio/Documents/Unit1_Collaborative_Learning_Discussion_2.docx">Click here to download this post as a Word Document</a>
 								        <p></p>
