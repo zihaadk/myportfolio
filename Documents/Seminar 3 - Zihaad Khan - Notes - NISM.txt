@@ -1,0 +1,280 @@
+Unit 3 - Practical and Team Activity
+======================================
+
+1. How many hops from your machine to your assigned website?
+
+13
+
+TRACEROUTE WITH ICMP:
+
+root@ZihaadMac ~ # traceroute loadedwithstuff.co.uk
+traceroute to loadedwithstuff.co.uk (68.66.247.187), 64 hops max, 52 byte packets
+ 1  dlinkrouter (192.168.0.1)  2.580 ms  1.335 ms  1.282 ms
+ 2  102-182-211-1.ip.afrihost.joburg (102.182.211.1)  3.532 ms  4.109 ms  3.402 ms
+ 3  lorictopin.net.afrihost.co.za (169.1.1.165)  5.527 ms  3.982 ms  4.213 ms
+ 4  tenaxxr.net.afrihost.co.za (169.1.1.193)  2.656 ms  2.596 ms  2.912 ms
+ 5  169-1-21-91.ip.afrihost.co.za (169.1.21.91)  3.301 ms  3.293 ms  3.762 ms
+ 6  206.249.1.105 (206.249.1.105)  3.893 ms  3.705 ms  4.071 ms
+ 7  be2385.ccr21.lon01.atlas.cogentco.com (154.54.40.93)  179.307 ms
+    be2489.ccr22.lon01.atlas.cogentco.com (154.54.88.221)  181.104 ms  181.021 ms
+ 8  be2572.ccr41.lon13.atlas.cogentco.com (154.54.61.253)  180.799 ms
+    be2573.ccr42.lon13.atlas.cogentco.com (154.54.62.5)  161.999 ms
+    be2572.ccr41.lon13.atlas.cogentco.com (154.54.61.253)  178.838 ms
+ 9  be12194.ccr41.ams03.atlas.cogentco.com (154.54.56.94)  168.877 ms  167.833 ms
+    be12488.ccr42.ams03.atlas.cogentco.com (130.117.51.42)  185.611 ms
+10  be2278.rcr21.b038092-0.ams03.atlas.cogentco.com (130.117.50.250)  189.032 ms
+    be2283.rcr21.b038092-0.ams03.atlas.cogentco.com (130.117.51.14)  187.453 ms
+    be2278.rcr21.b038092-0.ams03.atlas.cogentco.com (130.117.50.250)  187.707 ms
+11  euroaccess-ltd.demarc.cogentco.com (149.6.128.82)  186.090 ms  168.093 ms  166.997 ms
+12  v402.r2.nl1.a2webhosting.com (209.124.94.239)  187.205 ms  169.487 ms  169.049 ms
+13  loadedwithstuff.co.uk (68.66.247.187)  168.266 ms  169.715 ms  186.319 ms
+
+TRACEROUTE WITH TCP (HTTP):
+
+root@ZihaadMac ~ # tcptraceroute loadedwithstuff.co.uk
+Selected device en0, address 192.168.0.105, port 51346 for outgoing packets
+Tracing the path to loadedwithstuff.co.uk (68.66.247.187) on TCP port 80 (http), 30 hops max
+ 1  192.168.0.1  1.930 ms  2.113 ms  1.459 ms
+ 2  102-182-211-1.ip.afrihost.joburg (102.182.211.1)  5.673 ms  2.846 ms  6.575 ms
+ 3  lorictopin.net.afrihost.co.za (169.1.1.165)  48.649 ms  23.836 ms  19.486 ms
+ 4  tenaxxr.net.afrihost.co.za (169.1.1.193)  2.226 ms  4.242 ms  2.405 ms
+ 5  169-1-21-91.ip.afrihost.co.za (169.1.21.91)  5.505 ms  4.581 ms  5.410 ms
+ 6  206.249.1.105  6.729 ms  2.983 ms  3.433 ms
+ 7  be2436.ccr21.lon02.atlas.cogentco.com (130.117.0.89)  159.943 ms  159.936 ms  159.721 ms
+ 8  be2572.ccr41.lon13.atlas.cogentco.com (154.54.61.253)  217.408 ms  179.040 ms  183.107 ms
+ 9  be12194.ccr41.ams03.atlas.cogentco.com (154.54.56.94)  251.627 ms  167.036 ms  168.346 ms
+10  be2278.rcr21.b038092-0.ams03.atlas.cogentco.com (130.117.50.250)  188.020 ms  189.355 ms  188.979 ms
+11  euroaccess-ltd.demarc.cogentco.com (149.6.128.82)  179.714 ms  166.835 ms  168.784 ms
+12  v402.r2.nl1.a2webhosting.com (209.124.94.239)  167.827 ms  167.972 ms  167.333 ms
+13  loadedwithstuff.co.uk (68.66.247.187) [open]  168.404 ms  168.375 ms  168.252 ms
+
+Hop Number - This is the first column and is simply the number of the hop along the route. In this case, it is the sixth hop.
+
+RTT Columns - The next three columns display the round trip time (RTT) for your packet to reach that point and return to your computer. This is listed in milliseconds. There are three columns because the traceroute sends three separate signal packets. This is to display consistency, or a lack thereof, in the route.
+
+Domain/IP column - The last column has the IP address of the router. If it is available, the domain name will also be listed.
+
+==============================================================================================
+
+Which step causes the biggest delay in the route? What is the average duration of that delay?
+
+ 9.|-- be12488.ccr42.ams03.atlas  0.0%    10  166.8 189.7 166.2 353.7  58.7
+
+Average Delay is: 189.7
+
+zihaad@cipal-ksm sbin % sudo mtr loadedwithstuff.co.uk -r
+Start: 2021-11-21T14:20:13+0200
+HOST: ZihaadMac.local             Loss%   Snt   Last   Avg  Best  Wrst StDev
+  1.|-- dlinkrouter                0.0%    10    1.3   2.6   1.2   7.9   2.5
+  2.|-- 102-182-211-1.ip.afrihost  0.0%    10    3.0   9.7   3.0  33.0   9.2
+  3.|-- lorictopin.net.afrihost.c 40.0%    10   32.5  12.4   3.4  32.5  12.2
+  4.|-- tenaxxr.net.afrihost.co.z  0.0%    10    2.5   2.4   2.2   3.2   0.3
+  5.|-- 169-1-21-91.ip.afrihost.c  0.0%    10    4.7   4.6   2.4  14.9   3.8
+  6.|-- 206.249.1.105              0.0%    10    7.7   3.7   2.7   7.7   1.6
+  7.|-- be2489.ccr22.lon01.atlas.  0.0%    10  179.2 190.4 179.0 258.9  24.7
+  8.|-- be2869.ccr42.lon13.atlas.  0.0%    10  161.0 163.9 160.8 180.0   6.0
+  9.|-- be12488.ccr42.ams03.atlas  0.0%    10  166.8 189.7 166.2 353.7  58.7
+ 10.|-- be2283.rcr21.b038092-0.am  0.0%    10  167.5 185.0 167.5 274.8  37.6
+ 11.|-- euroaccess-ltd.demarc.cog  0.0%    10  166.7 177.5 166.3 246.9  25.6
+ 12.|-- v402.r2.nl1.a2webhosting.  0.0%    10  168.7 178.0 167.5 268.3  31.8
+ 13.|-- loadedwithstuff.co.uk      0.0%    10  167.5 170.4 167.2 191.1   7.4
+
+Updated MTR:
+
+root@ZihaadMac ~ # cd /usr/local/Cellar/mtr/0.94/sbin
+root@ZihaadMac sbin # mtr loadedwithstuff.co.uk -r
+Start: 2021-11-27T21:52:30+0200
+HOST: ZihaadMac.local             Loss%   Snt   Last   Avg  Best  Wrst StDev
+  1.|-- dlinkrouter                0.0%    10    1.5  11.6   1.4  63.5  19.9
+  2.|-- 102-182-211-1.ip.afrihost  0.0%    10    5.4  33.3   3.7 116.9  42.1
+  3.|-- lorictopin.net.afrihost.c  0.0%    10   51.3  13.1   3.6  51.3  16.3
+  4.|-- tenaxxr.net.afrihost.co.z  0.0%    10    2.6  39.4   2.5 152.9  60.1
+  5.|-- 169-1-21-91.ip.afrihost.c  0.0%    10    4.0  16.1   2.6  75.8  25.0
+  6.|-- 206.249.1.105              0.0%    10    5.0  14.3   2.9 103.9  31.5
+  7.|-- be2489.ccr22.lon01.atlas.  0.0%    10  179.5 197.6 179.0 274.0  32.8
+  8.|-- be2869.ccr42.lon13.atlas.  0.0%    10  161.4 177.0 160.1 290.0  41.0
+  9.|-- be12488.ccr42.ams03.atlas  0.0%    10  167.1 191.9 166.1 288.7  43.8
+ 10.|-- be2283.rcr21.b038092-0.am  0.0%    10  169.5 180.7 167.5 248.8  27.0
+ 11.|-- euroaccess-ltd.demarc.cog  0.0%    10  166.6 196.9 166.6 302.0  50.1
+ 12.|-- v402.r2.nl1.a2webhosting.  0.0%    10  168.4 191.1 168.0 324.5  49.8
+ 13.|-- loadedwithstuff.co.uk      0.0%    10  167.8 202.0 167.3 271.2  45.6
+
+===============================================================================================
+
+What are the main nameservers for the website?
+
+Name servers are computers that translate domain names into IP addresses (or vice versa).
+
+zihaad@cipal-ksm sbin % dig ns loadedwithstuff.co.uk @8.8.8.8
+
+; <<>> DiG 9.10.6 <<>> ns loadedwithstuff.co.uk @8.8.8.8
+;; global options: +cmd
+;; Got answer:
+;; ->>HEADER<<- opcode: QUERY, status: NOERROR, id: 56065
+;; flags: qr rd ra; QUERY: 1, ANSWER: 4, AUTHORITY: 0, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 512
+;; QUESTION SECTION:
+;loadedwithstuff.co.uk.		IN	NS
+
+;; ANSWER SECTION:
+loadedwithstuff.co.uk.	21600	IN	NS	ns3.a2hosting.com.
+loadedwithstuff.co.uk.	21600	IN	NS	ns4.a2hosting.com.
+loadedwithstuff.co.uk.	21600	IN	NS	ns1.a2hosting.com.
+loadedwithstuff.co.uk.	21600	IN	NS	ns2.a2hosting.com.
+
+;; Query time: 695 msec
+;; SERVER: 8.8.8.8#53(8.8.8.8)
+;; WHEN: Sun Nov 21 14:36:43 SAST 2021
+;; MSG SIZE  rcvd: 135
+
+================================================================================================
+
+Who is the registered contact?
+
+Can also be found from: https://who.is/whois-ip/ip-address/68.66.247.187
+
+a2hosting.com
+
+OrgName:        A2 Hosting, Inc.
+OrgId:          A2HOS
+Address:        P.O. Box 2998
+City:           Ann Arbor
+StateProv:      MI
+PostalCode:     48106
+Country:        US
+RegDate:        2004-03-16
+Updated:        2021-10-13
+Comment:        http://www.a2hosting.com
+Ref:            https://rdap.arin.net/registry/entity/A2HOS
+
+OR via CLI:
+
+root@ZihaadMac sbin # whois loadedwithstuff.co.uk
+% IANA WHOIS server
+% for more information on IANA, visit http://www.iana.org
+% This query returned 1 object
+
+refer:        whois.nic.uk
+
+domain:       UK
+
+organisation: Nominet UK
+address:      Minerva House
+address:      Edmund Halley Road
+address:      Oxford Science Park
+address:      Oxford  OX4 4DQ
+address:      United Kingdom
+
+contact:      administrative
+name:         Managing Director
+organisation: Nominet UK
+address:      Minerva House
+address:      Edmund Halley Road
+address:      Oxford Science Park
+address:      Oxford  OX4 4DQ
+address:      United Kingdom
+phone:        +44 1865 332211
+fax-no:       +44 1865 332299
+e-mail:       md@nominet.org.uk
+
+contact:      technical
+name:         Technical Director
+organisation: Nominet UK
+address:      Minerva House
+address:      Edmund Halley Road
+address:      Oxford Science Park
+address:      Oxford  OX4 4DQ
+address:      United Kingdom
+phone:        +44 1865 332211
+fax-no:       +44 1865 332299
+e-mail:       td@nominet.org.uk
+
+nserver:      DNS1.NIC.UK 213.248.216.1 2a01:618:400:0:0:0:0:1
+nserver:      DNS2.NIC.UK 103.49.80.1 2401:fd80:400:0:0:0:0:1
+nserver:      DNS3.NIC.UK 213.248.220.1 2a01:618:404:0:0:0:0:1
+nserver:      DNS4.NIC.UK 2401:fd80:404:0:0:0:0:1 43.230.48.1
+nserver:      NSA.NIC.UK 156.154.100.3 2001:502:ad09:0:0:0:0:3
+nserver:      NSB.NIC.UK 156.154.101.3 2001:502:2eda:0:0:0:0:3
+nserver:      NSC.NIC.UK 156.154.102.3 2610:a1:1009:0:0:0:0:3
+nserver:      NSD.NIC.UK 156.154.103.3 2610:a1:1010:0:0:0:0:3
+ds-rdata:     43876 8 2 A107ED2AC1BD14D924173BC7E827A1153582072394F9272BA37E2353BC659603
+
+whois:        whois.nic.uk
+
+status:       ACTIVE
+remarks:      Registration information: http://www.nic.uk/
+
+created:      1985-07-24
+changed:      2021-10-07
+source:       IANA
+
+# whois.nic.uk
+
+
+    Domain name:
+        loadedwithstuff.co.uk
+
+    Data validation:
+        Nominet was not able to match the registrant's name and/or address against a 3rd party source on 21-Oct-2021
+
+    Registrar:
+        eNom LLC [Tag = ENOM]
+        URL: http://www.enom.com
+
+    Relevant dates:
+        Registered on: 21-Oct-2021
+        Expiry date:  21-Oct-2022
+        Last updated:  21-Oct-2021
+
+    Registration status:
+        Registered until expiry date.
+
+    Name servers:
+        ns1.a2hosting.comN
+        ns2.a2hosting.com
+        ns3.a2hosting.com
+        ns4.a2hosting.com
+
+    WHOIS lookup made at 19:56:34 27-Nov-2021
+
+root@ZihaadMac sbin #
+
+================================================================================================
+
+What is the MX record for the website?
+
+mail.loadedwithstuff.co.uk.
+
+zihaad@cipal-ksm sbin % nslookup -type=mx loadedwithstuff.co.uk 8.8.8.8
+Server:		8.8.8.8
+Address:	8.8.8.8#53
+
+Non-authoritative answer:
+loadedwithstuff.co.uk	mail exchanger = 0 mail.loadedwithstuff.co.uk.
+
+================================================================================================
+
+Where is the website hosted?
+
+Hosting checker can also be used here: https://hostingchecker.com
+
+It is hosted by: A2 Hosting, Inc.
+
+Organization name: A2 Hosting, Inc
+
+IP address: 68.66.247.187
+
+AS(autonomous system) number and organization: AS55293 A2 Hosting, Inc.
+
+AS name: A2HOSTING
+
+Reverse DNS of the IP: 68.66.247.187.static.a2webhosting.com
+
+City: Amsterdam
+
+Country: Netherlands
+
+
+
